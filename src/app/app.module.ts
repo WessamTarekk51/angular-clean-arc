@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +17,8 @@ import { GetSubjectsImpl } from './modules/Stundet_module/home-screen/data/data_
 import { SubjectImplementationRepository } from './modules/Stundet_module/home-screen/data/repository/subject-implementation.repository';
 import { SubjectRepository } from './modules/Stundet_module/home-screen/domain/repository/subject_repository';
 import { getSubjectUseCase } from './modules/Stundet_module/home-screen/domain/usecase/getSubject-usecase';
-
+import { GetTermsImpl } from './modules/Stundet_module/home-screen/data/data_source/local/term-dataSource-mpl';
+import { GetTerms } from './modules/Stundet_module/home-screen/data/data_source/local/term-dataSource';
 
 const userLoginUseCaseFactory = (userRepo: UserRepository) =>
   new UserLoginUseCase(userRepo);
@@ -36,10 +38,11 @@ export const getSubjectUseCaseProvider = {
 };
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule,BrowserAnimationsModule],
   providers: [
     userLoginUseCaseProvider,
     getSubjectUseCaseProvider,
+    BrowserAnimationsModule,
 
     // userImplementationRepositoryProvider,
     { provide: UserRepository, useClass: UserImplementationRepository },
@@ -47,6 +50,7 @@ export const getSubjectUseCaseProvider = {
     { provide: LoginLocalDataSource, useClass: LoginLocalDataSourceImpl },
     { provide: GetSubjects, useClass: GetSubjectsImpl },
     { provide: SubjectRepository, useClass: SubjectImplementationRepository },
+    { provide: GetTerms, useClass: GetTermsImpl },
 
   ],
   bootstrap: [AppComponent],

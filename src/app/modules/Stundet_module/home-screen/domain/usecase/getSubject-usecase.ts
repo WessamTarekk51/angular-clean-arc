@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { BaseUseCase } from 'src/app/core/base/usecase/base-usecase';
-import { SubjectModel } from '../model/subject.model';
+import { SubjectModel, SubjectModelResult } from '../model/subject.model';
 import { SubjectRepository } from '../repository/subject_repository';
 import { Injectable } from '@angular/core';
 
@@ -8,10 +8,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class getSubjectUseCase
-  implements BaseUseCase<{}, SubjectModel>
+  implements BaseUseCase<{}, SubjectModelResult>
 {
   constructor(private SubjectRepository: SubjectRepository) {}
-  execute(): Observable<SubjectModel> {
+  execute(): Observable<SubjectModelResult> {
     return this.SubjectRepository.getSubject();
   }
+  
 }

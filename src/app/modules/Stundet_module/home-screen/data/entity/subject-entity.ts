@@ -1,3 +1,5 @@
+import { IResult } from "./IResult";
+
 export interface SubjectEntity {
   id: string;
   name: string;
@@ -7,4 +9,7 @@ export interface SubjectEntity {
   teacherGuide: string;
   numeral: string;
   isSubscribed: boolean;
+}
+export interface SubjectEntityResult extends IResult {
+  value: SubjectEntity[]
 }

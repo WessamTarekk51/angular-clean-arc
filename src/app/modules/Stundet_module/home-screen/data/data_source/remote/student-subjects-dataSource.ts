@@ -1,8 +1,7 @@
 import { Observable } from 'rxjs';
-import {SubjectEntity } from '../../entity/subject-entity';
-import { Injectable } from '@angular/core';
+import {SubjectEntityResult } from '../../entity/subject-entity';
 
 
 export abstract class GetSubjects {
-  abstract getSubject(): Observable<SubjectEntity>;
+  abstract getSubject(): Observable<SubjectEntityResult>;
 }

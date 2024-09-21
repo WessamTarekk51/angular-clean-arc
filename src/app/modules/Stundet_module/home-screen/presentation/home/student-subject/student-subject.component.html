@@ -1,1 +1,11 @@
-<p>student-subject works!</p>
+
+<p-dropdown 
+    [options]="Terms" 
+    optionLabel="name" 
+    [(ngModel)]="selectedTerm" 
+    placeholder="Select term" (onChange)="selectTerm()"/>
+
+<ul *ngFor="let Subject of Subjects">
+    <li>{{Subject.name}}</li>
+    <li>{{Subject.term}}</li>
+</ul>

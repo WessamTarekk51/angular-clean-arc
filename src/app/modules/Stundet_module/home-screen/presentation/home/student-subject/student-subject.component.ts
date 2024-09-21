@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { getSubjectUseCase } from '../../../domain/usecase/getSubject-usecase';
+import { SubjectModel } from '../../../domain/model/subject.model';
+import { TermImplementationRepository } from '../../../data/repository/terms-implementation.repository';
+import { Term } from '../../../data/entity/term';
 
 @Component({
   selector: 'app-student-subject',
@@ -7,18 +10,32 @@ import { getSubjectUseCase } from '../../../domain/usecase/getSubject-usecase';
   styleUrls: ['./student-subject.component.css']
 })
 export class StudentSubjectComponent {
-  constructor(private getSubjectUseCase: getSubjectUseCase) { }
+  Subjects !: SubjectModel[];
+  Terms !: Term[];
+  selectedTerm :any;
+  constructor(private getSubjectUseCase: getSubjectUseCase,private getTermsRepository : TermImplementationRepository) { }
   ngOnInit() {
     this.getSubject()
+    this.getTerms()
   }
 
   getSubject() {
     var response = this.getSubjectUseCase.execute();
-    console.log(response)
     response.subscribe(
-      (value) => console.log(value),
+      (value) =>this.Subjects= value.value,
       (error) => console.error(error),
       () => console.log('Completed')
     );
+  }
+  getTerms() {
+    var response = this.getTermsRepository.getTerms();
+    response.subscribe(
+      (value) =>this.Terms = value,
+      (error) => console.error(error),
+      () => console.log('Completed')
+    );
+  }
+  selectTerm(){
+    console.log(this.selectedTerm.id);
   }
 }

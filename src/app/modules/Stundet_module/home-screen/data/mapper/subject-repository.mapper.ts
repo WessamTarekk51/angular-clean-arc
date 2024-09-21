@@ -1,33 +1,32 @@
 import { Mapper } from 'src/app/core/base/utils/mapper';
-import { SubjectModel } from '../../domain/model/subject.model';
-import { SubjectEntity } from '../entity/subject-entity';
+import { SubjectModel, SubjectModelResult } from '../../domain/model/subject.model';
+import { SubjectEntityResult, SubjectEntity } from '../entity/subject-entity';
 
 export class SubjectImplementationRepositoryMapper extends Mapper<
-  SubjectEntity,
-  SubjectModel
+SubjectEntityResult,
+SubjectModelResult
 > {
-  mapFrom(param: SubjectEntity): SubjectModel {
+  mapFrom(param: SubjectEntityResult): SubjectModelResult {
+    console.log(param)
     return {
-      id: param.id,
-      name: param.name,
-      backgroundImage: param.backgroundImage,
-      icon: param.icon,
-      term: param.term,
-      teacherGuide: param.teacherGuide,
-      numeral: param.numeral,
-      isSubscribed: param.isSubscribed,
+      value: param.value,
+      errorCode: param.errorCode,
+      errorMessage: param.errorMessage,
+      isExceptionOccurred: param.isExceptionOccurred,
+      isSuccess: param.isSuccess,
+      resultType: param.resultType,
+      errorDetails: param.errorDetails
     };
   }
-  mapTo(param: SubjectModel): SubjectEntity {
+  mapTo(param: SubjectModelResult): SubjectEntityResult {
     return {
-      id: param.id,
-      name: param.name,
-      backgroundImage: param.backgroundImage,
-      icon: param.icon,
-      term: param.term,
-      teacherGuide: param.teacherGuide,
-      numeral: param.numeral,
-      isSubscribed: param.isSubscribed,
+      value: param.value,
+      errorCode: param.errorCode,
+      errorMessage: param.errorMessage,
+      isExceptionOccurred: param.isExceptionOccurred,
+      isSuccess: param.isSuccess,
+      resultType: param.resultType,
+      errorDetails: param.errorDetails
     };
   }
 }
